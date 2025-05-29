@@ -24,7 +24,7 @@ const Template = ({
 
     const { proton, setProton, removeProton } = useLocalStorage();
     const { electron, setElectron, removeElectron } = useSessionStorage();
-    
+
     const { user, setUser } = useUser();
     const { variables } = useVariables();
 
@@ -39,7 +39,7 @@ const Template = ({
                 let token = electron;
 
                 if (!token) {
-                    const response = await axios.post("http://localhost:3001/api/refresh-token", { refreshToken: proton });
+                    const response = await axios.post("https://corsola-authentication.vercel.app/api/refresh-token", { refreshToken: proton });
 
                     if (response?.status === 401) throw new Error("Unauthorized");
                     if (!response?.data?.jwtToken) throw new Error("Token refresh failed");
